@@ -15,18 +15,14 @@ return {
       "saadparwaiz1/cmp_luasnip",
       {
         "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
+        config = function() require("copilot_cmp").setup() end,
       },
       "petertriho/cmp-git",
     },
   },
   {
     "nvim-lualine/lualine.nvim",
-    config = function()
-      require("PluginConf.lualine")
-      end,
+    config = function() require "PluginConf.lualine" end,
   },
   -- ╭─────────────────────────────────────────────────────────╮
   -- │ General                                                 │
@@ -39,23 +35,23 @@ return {
     },
     cmd = "Refactor",
     keys = {
-      { "<leader>re", ":Refactor extract ",              mode = "x",          desc = "Extract function" },
-      { "<leader>rf", ":Refactor extract_to_file ",      mode = "x",          desc = "Extract function to file" },
-      { "<leader>rv", ":Refactor extract_var ",          mode = "x",          desc = "Extract variable" },
-      { "<leader>ri", ":Refactor inline_var",            mode = { "x", "n" }, desc = "Inline variable" },
-      { "<leader>rI", ":Refactor inline_func",           mode = "n",          desc = "Inline function" },
-      { "<leader>rb", ":Refactor extract_block",         mode = "n",          desc = "Extract block" },
-      { "<leader>rf", ":Refactor extract_block_to_file", mode = "n",          desc = "Extract block to file" },
+      { "<leader>re", ":Refactor extract ", mode = "x", desc = "Extract function" },
+      { "<leader>rf", ":Refactor extract_to_file ", mode = "x", desc = "Extract function to file" },
+      { "<leader>rv", ":Refactor extract_var ", mode = "x", desc = "Extract variable" },
+      { "<leader>ri", ":Refactor inline_var", mode = { "x", "n" }, desc = "Inline variable" },
+      { "<leader>rI", ":Refactor inline_func", mode = "n", desc = "Inline function" },
+      { "<leader>rb", ":Refactor extract_block", mode = "n", desc = "Extract block" },
+      { "<leader>rf", ":Refactor extract_block_to_file", mode = "n", desc = "Extract block to file" },
     },
-    config = true
+    config = true,
   },
   -- ╭─────────────────────────────────────────────────────────╮
   -- │ AI                                                      │
   -- ╰─────────────────────────────────────────────────────────╯
   {
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -68,39 +64,51 @@ return {
         Tests = "Briefly explain how the selected code works, then generate unit tests.",
         Refactor = "Refactor the code to improve clarity and readability.",
       },
+      window = {
+        width = 0.4,
+        height = 0.6,
+        layout = "float",
+        border = "rounded",
+        relative = "editor",
+        prompt = {
+          border = "rounded",
+          highlight = "Normal",
+        },
+        title = "Copilot Chat, aber in gut",
+      },
     },
     build = function()
       vim.defer_fn(function()
-        vim.cmd("UpdateRemotePlugins")
-        vim.notify("CopilotChat - Updated remote plugins. Please restart Neovim.")
+        vim.cmd "UpdateRemotePlugins"
+        vim.notify "CopilotChat - Updated remote plugins. Please restart Neovim."
       end, 3000)
     end,
     keys = {
-      { "<leader>ccb", ":CopilotChatBuffer<cr>",      desc = "CopilotChat - Buffer" },
+      -- { "<leader>ccb", "<cmd>CopilotChatBuffer<cr>", desc = "CopilotChat - Buffer" },
       { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>",   desc = "CopilotChat - Generate tests" },
-      {
-        "<leader>ccT",
-        "<cmd>CopilotChatVsplitToggle<cr>",
-        desc = "CopilotChat - Toggle Vsplit", -- Toggle vertical split
-      },
-      {
-        "<leader>ccv",
-        ":CopilotChatVisual",
-        mode = "x",
-        desc = "CopilotChat - Open in vertical split",
-      },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      -- {
+      --   "<leader>ccT",
+      --   "<cmd>CopilotChatVsplitToggle<cr>",
+      --   desc = "CopilotChat - Toggle Vsplit", -- Toggle vertical split
+      -- },
+      -- {
+      --   "<leader>ccv",
+      --   "<cmd>CopilotChat<cr>",
+      --   mode = "x",
+      --   desc = "CopilotChat - Open in vertical split",
+      -- },
       {
         "<leader>ccc",
-        ":CopilotChatInPlace<cr>",
+        "<cmd>CopilotChat<cr>",
         mode = { "n", "x" },
-        desc = "CopilotChat - Run in-place code",
+        desc = "CopilotChat - Open Chat Window",
       },
       {
         "<leader>ccf",
         "<cmd>CopilotChatFixDiagnostic<cr>", -- Get a fix for the diagnostic message under the cursor.
         desc = "CopilotChat - Fix diagnostic",
       },
-    }
+    },
   },
 }
