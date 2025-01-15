@@ -79,6 +79,12 @@ return {
             end,
             ["clangd"] = function()
                 nvim_lsp["clangd"].setup({
+                    cmd = {
+                        "clangd",
+                        "--compile-commands-dir=build",
+                        "--query-driver=**/*",
+                        "--header-insertion=never"
+                    },
                     on_attach = on_attach,
                     capabilities = capabilities,
                 })

@@ -19,22 +19,22 @@ map("n", "<ESC>", ":noh<CR>")
 map("n", "<leader>e", "<CMD>Oil --float<CR>")
 map("n", "-", "<CMD>Oil<CR>")
 
--- New Windows
--- map("n", "<leader>o", "<CMD>vsplit<CR>")
--- map("n", "<leader>p", "<CMD>split<CR>")
+-- unbind Shift + Up/Down arrow keys
+--[[ vim.keymap.set('n', '<S-Up>', '<Nop>', { noremap = true })
+vim.keymap.set('n', '<S-Down>', '<Nop>', { noremap = true }) ]]
 
--- Window Navigation
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-j>", "<C-w>j")
+-- Window management
+vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })   -- Split vertical
+vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split window horizontally' }) -- Split horizontal
+vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal size' })    -- Make equal size
+vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close current split' })   -- Close current split
 
--- Resize Windows
---map("n", "<C-Left>", "<C-w><")
---map("n", "<C-Right>", "<C-w>>")
---map("n", "<C-Up>", "<C-w>+")
---map("n", "<C-Down>", "<C-w>-")
---map("n", "<C-Down>", "<C-w>-")
+-- More ergonomic window movement
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to window below' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to window above' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -42,6 +42,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(e)
+        local opts = { buffer = e.buf }
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lnp.buf.rename() end, opts)
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    end
+})
+
 
 vim.api.nvim_create_autocmd("TermOpen", {
     group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
