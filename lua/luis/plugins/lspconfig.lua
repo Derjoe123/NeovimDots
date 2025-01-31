@@ -83,6 +83,7 @@ return {
                         "clangd",
                         "--compile-commands-dir=build",
                         "--query-driver=**/*",
+                        "--experimental-modules-support",
                         "--header-insertion=never"
                     },
                     on_attach = on_attach,
