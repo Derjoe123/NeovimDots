@@ -83,8 +83,11 @@ return {
                         "clangd",
                         "--compile-commands-dir=build",
                         "--query-driver=**/*",
+                        "--clang-tidy",
+                        "--clang-tidy-checks=*",
+                        "--all-scopes-completion",
                         "--experimental-modules-support",
-                        "--header-insertion=never"
+                        "--completion-style=bundled",
                     },
                     on_attach = on_attach,
                     capabilities = capabilities,
