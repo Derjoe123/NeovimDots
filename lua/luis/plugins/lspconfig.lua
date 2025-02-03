@@ -84,7 +84,6 @@ return {
                         "--compile-commands-dir=build",
                         "--query-driver=**/*",
                         "--clang-tidy",
-                        "--clang-tidy-checks=*",
                         "--all-scopes-completion",
                         "--experimental-modules-support",
                         "--completion-style=bundled",
