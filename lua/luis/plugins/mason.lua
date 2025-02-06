@@ -18,6 +18,7 @@ return {
                 "tailwindcss",
                 "clangd",
                 "lua_ls",
+                "zls",
             },
         })
 
@@ -30,6 +31,7 @@ return {
                 "pylint",
                 "eslint_d",
                 --"clang-format",
+                "codelldb",
             },
         })
     end,

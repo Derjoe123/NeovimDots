@@ -1,23 +1,11 @@
 vim.g.mapleader = " "
 
-local function map(mode, lhs, rhs)
-    vim.keymap.set(mode, lhs, rhs, { silent = true })
-end
+--Oil.nvim
+vim.keymap.set('n', '<leader>e', '<CMD>Oil --float<CR>', { desc = 'float file manager' })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'open file manager' })
 
-
--- Save
--- map("n", "<leader>w", "<CMD>update<CR>")
-
--- Quit
--- map("n", "<leader>q", "<CMD>q<CR>")
 -- Clear search highlights after pressing escape
-map("n", "<ESC>", ":noh<CR>")
-
--- Exit insert mode
--- map("i", "jk", "<ESC>")
--- NeoTree
-map("n", "<leader>e", "<CMD>Oil --float<CR>")
-map("n", "-", "<CMD>Oil<CR>")
+vim.keymap.set('n', '<ESC>', ':noh<CR>', { desc = 'reset find highlighting' })
 
 -- unbind Shift + Up/Down arrow keys
 --[[ vim.keymap.set('n', '<S-Up>', '<Nop>', { noremap = true })
@@ -45,17 +33,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { buffer = e.buf, desc = 'go to definition' })
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = e.buf, desc = 'Hover definition' })
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
+            { buffer = e.buf, desc = 'workspace symbol' })
+        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end,
+            { buffer = e.buf, desc = 'float diagnostics' })
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
+            { buffer = e.buf, desc = 'code action' })
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
+            { buffer = e.buf, desc = 'symbol references' })
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
+            { buffer = e.buf, desc = 'rename symbol' })
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
+            { buffer = e.buf, desc = 'function signature helper' })
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
+            { buffer = e.buf, desc = 'next error/warning' })
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
+            { buffer = e.buf, desc = 'previous error/warning' })
     end
 })
 
@@ -76,12 +71,13 @@ vim.keymap.set("n", "<space>to", function()
     vim.api.nvim_win_set_height(0, 15)
 
     job_id = vim.bo.channel
-end)
+end, { desc = 'open new terminal' })
 
 local current_command = ""
 vim.keymap.set("n", "<space>te", function()
     current_command = vim.fn.input("Command: ")
-end)
+end, { desc = 'enter terminal command' }
+)
 
 vim.keymap.set("n", "<space>tr", function()
     if current_command == "" then
@@ -89,4 +85,5 @@ vim.keymap.set("n", "<space>tr", function()
     end
 
     vim.fn.chansend(job_id, { current_command .. "\r\n" })
-end)
+end, { desc = 'send terminal command' }
+)

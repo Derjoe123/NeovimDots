@@ -77,6 +77,12 @@ return {
                     capabilities = capabilities,
                 })
             end,
+            ["zls"] = function()
+                nvim_lsp["zls"].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
+            end,
             ["clangd"] = function()
                 nvim_lsp["clangd"].setup({
                     cmd = {
