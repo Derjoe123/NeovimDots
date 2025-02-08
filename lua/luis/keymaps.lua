@@ -10,6 +10,9 @@ vim.keymap.set('n', '<ESC>', ':noh<CR>', { desc = 'reset find highlighting' })
 -- unbind Shift + Up/Down arrow keys
 vim.keymap.set('n', '<S-k>', '<CMD>:m -2 <CR>', { desc = 'move current line up' })
 vim.keymap.set('n', '<S-j>', '<CMD>:m +1 <CR>', { desc = 'move current line down' })
+-- for visual mode
+vim.keymap.set('x', '<S-k>', ":m '<-2<CR>gv=gv", { desc = 'move selected lines up' })
+vim.keymap.set('x', '<S-j>', ":m '>+1<CR>gv=gv", { desc = 'move selected lines down' })
 
 -- Window management
 vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })   -- Split vertical
