@@ -1,12 +1,18 @@
 return {
-    --[[ {
+    {
+        enabled = true,
         "folke/tokyonight.nvim",
-    }, ]]
+    },
+    {
+        enabled = true,
+        "olimorris/onedarkpro.nvim",
+        priority = 1000, -- Ensure it loads first
+    },
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
-        enabled = false,
+        enabled = true,
         lazy = false,
         config = function()
             require("catppuccin").setup({
@@ -59,7 +65,7 @@ return {
             })
 
             -- setup must be called before loading
-            vim.cmd.colorscheme "catppuccin"
+            --[[             vim.cmd.colorscheme "catppuccin" ]]
         end,
 
     },
@@ -80,10 +86,7 @@ return {
                 contrast = "soft",
                 palette_overrides = {},
             })
-            vim.cmd("colorscheme gruvbox")
+            --[[             vim.cmd("colorscheme gruvbox") ]]
         end,
     },
-    --[[ {
-        "joshdick/onedark.vim",
-    }, ]]
 }

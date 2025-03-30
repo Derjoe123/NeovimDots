@@ -24,7 +24,6 @@ o.inccommand =
 o.splitright = true
 o.splitbelow = true         -- When on, splitting a window will put the new window below the current one
 o.termguicolors = true
--- set the default shell to powershell
 o.shell = "powershell"
 o.guifont = "Hack Nerd Font Mono:h12"
 o.guifont = "Hack Nerd Font Mono:h12"

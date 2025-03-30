@@ -1,6 +1,7 @@
 -- status line
 return {
     {
+        enabled = false,
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", 'AndreM222/copilot-lualine' },
         options = { theme = 'gruvbox' },
