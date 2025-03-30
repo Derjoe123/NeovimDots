@@ -29,3 +29,4 @@ o.guifont = "Hack Nerd Font Mono:h12"
 o.guifont = "Hack Nerd Font Mono:h12"
 o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 o.shellquote = "\""
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
