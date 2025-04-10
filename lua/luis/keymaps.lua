@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 
 --Oil.nvim
-vim.keymap.set('n', '<leader>e', '<CMD>Oil --float<CR>', { desc = 'float file manager' })
-vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'open file manager' })
+--[[ vim.keymap.set('n', '<leader>e', '<CMD>Oil --float<CR>', { desc = 'float file manager' }) ]]
+vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open()<CR>', { desc = 'open file manager' })
 
 -- Clear search highlights after pressing escape
 vim.keymap.set('n', '<ESC>', ':noh<CR>', { desc = 'reset find highlighting' })

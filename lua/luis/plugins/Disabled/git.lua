@@ -1,6 +1,7 @@
 return {
     {
         "lewis6991/gitsigns.nvim",
+        enabled = false,
         config = function()
             local gitsigns = require("gitsigns")
             gitsigns.setup({
@@ -50,6 +51,7 @@ return {
 
     {
         "NeogitOrg/neogit",
+        enabled = false,
         dependencies = {
             "nvim-lua/plenary.nvim",  -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
