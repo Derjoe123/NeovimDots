@@ -14,6 +14,7 @@ return {
         'saghen/blink.cmp',
         dependencies = 'rafamadriz/friendly-snippets',
         version = '*',
+
         opts = {
             -- 'default' for mappings similar to built-in completion
             -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -38,11 +39,13 @@ return {
                         module = 'blink.compat.source',
                     },
                 },
+                cmdline = {},
             },
             completion = {
                 --[[ ghost_text = {
                     enabled = true,
                 }, ]]
+
                 menu = {
                     border = 'rounded',
                     scrollbar = false,
