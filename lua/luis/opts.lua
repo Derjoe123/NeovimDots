@@ -12,8 +12,8 @@ o.shiftwidth = 4            -- Number of spaces to use for each step of (auto)in
 o.tabstop = 4               -- Number of spaces that a <Tab> in the file counts for.
 o.encoding = "UTF-8"        -- Sets the character encoding used inside Vim.
 o.ruler = true              -- Show the line and column number of the cursor position, separated by a comma.
-o.mouse = "a"               -- Enable the use of the mouse. "a" you can use on all modes
-o.title = true              -- When on, the title of the window will be set to the value of 'titlestring'
+o.mouse = "n"               -- Enable the use of the mouse. "a" you can use on all modes
+o.title = false             -- When on, the title of the window will be set to the value of 'titlestring'
 o.hidden = true             -- When on a buffer becomes hidden when it is |abandon|ed
 o.ttimeoutlen = 0           -- The time in milliseconds that is waited for a key code or mapped key sequence to complete.
 o.wildmenu = true           -- When 'wildmenu' is on, command-line completion operates in an enhanced mode.
@@ -22,11 +22,12 @@ o.showmatch = true          -- When a bracket is inserted, briefly jump to the m
 o.inccommand =
 "split"                     -- When nonempty, shows the effects of :substitute, :smagic, :snomagic and user commands with the :command-preview flag as you type.
 o.splitright = true
-o.splitbelow = true         -- When on, splitting a window will put the new window below the current one
+o.splitbelow = false        -- When on, splitting a window will put the new window below the current one
 o.termguicolors = true
 o.shell = "powershell"
 o.guifont = "Hack Nerd Font Mono:h12"
 o.guifont = "Hack Nerd Font Mono:h12"
+o.guicursor = "" -- set cursor to block in insert mode
 o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 o.shellquote = "\""
 --vim.diagnostic.config({ virtual_lines = { current_line = true } })
