@@ -1,24 +1,23 @@
 -- status line
 return {
     {
-        enabled = false,
+        enabled = true,
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", 'AndreM222/copilot-lualine' },
-        options = { theme = 'gruvbox' },
+        options = { theme = {} },
         config = function()
             require("lualine").setup(
                 {
                     options = {
                         icons_enabled = true,
-                        theme = 'gruvbox',
-                        component_separators = { left = '', right = '' },
-                        section_separators = { left = '', right = '' },
+                        component_separators = { left = '', right = '' },
+                        section_separators = { left = '', right = '' }, --{ left = '', right = '' },
                         disabled_filetypes = {},
                         always_divide_middle = true
                     },
                     sections = {
                         lualine_a = { 'mode' },
-                        lualine_b = { 'branch', 'diff',
+                        lualine_b = { 'buffers', 'diff',
                             {
                                 'diagnostics',
                                 sources = { "nvim_diagnostic" },
@@ -26,8 +25,8 @@ return {
                             }
                         },
                         lualine_c = { 'filename' },
-                        lualine_x = { 'copilot', 'encoding', 'fileformat', 'filetype' }, -- I added copilot here
-                        lualine_y = { 'progress' },
+                        lualine_x = { 'searchcount', 'selectioncount', 'fileformat', 'filetype' }, -- I added copilot here
+                        lualine_y = { 'lsp_status' },
                         lualine_z = { 'location' }
                     },
                     inactive_sections = {

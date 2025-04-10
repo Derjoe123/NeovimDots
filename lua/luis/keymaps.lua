@@ -51,9 +51,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { buffer = e.buf, desc = 'rename symbol' })
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
             { buffer = e.buf, desc = 'function signature helper' })
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
-            { buffer = e.buf, desc = 'next error/warning' })
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
-            { buffer = e.buf, desc = 'previous error/warning' })
+        vim.keymap.set("n", "[d", function()
+            vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end, { buffer = e.buf, desc = 'next error' })
+
+        vim.keymap.set("n", "]d", function()
+            vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end, { buffer = e.buf, desc = 'previous error' })
     end
 })

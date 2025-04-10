@@ -39,7 +39,7 @@ return {
                         module = 'blink.compat.source',
                     },
                 },
-                cmdline = {},
+                --cmdline = {}, renamed to cmdline.sources
             },
             completion = {
                 --[[ ghost_text = {
