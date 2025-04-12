@@ -1,7 +1,7 @@
 return {
     {
         "stevearc/oil.nvim",
-        enabled = false,
+        enabled = true,
         config = function()
             require("oil").setup({
                 columns = {
