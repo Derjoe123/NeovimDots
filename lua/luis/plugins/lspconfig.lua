@@ -34,15 +34,9 @@ return {
             end,
         })
 
-        mason_lspconfig.setup_handlers({
+        mason_lspconfig.setup({
             function(server)
                 nvim_lsp[server].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-            ["cssls"] = function()
-                nvim_lsp["cssls"].setup({
                     on_attach = on_attach,
                     capabilities = capabilities,
                 })
@@ -83,21 +77,21 @@ return {
                     capabilities = capabilities,
                 })
             end,
-            ["clangd"] = function()
-                nvim_lsp["clangd"].setup({
-                    cmd = {
-                        "clangd",
-                        "--compile-commands-dir=build",
-                        "--query-driver=**/*",
-                        "--clang-tidy",
-                        "--all-scopes-completion",
-                        "--experimental-modules-support",
-                        "--completion-style=bundled",
-                    },
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
+            -- ["clangd"] = function()
+            --     nvim_lsp["clangd"].setup({
+            --         cmd = {
+            --             "clangd",
+            --             "--compile-commands-dir=build",
+            --             "--query-driver=**/*",
+            --             "--clang-tidy",
+            --             "--all-scopes-completion",
+            --             "--experimental-modules-support",
+            --             "--completion-style=bundled",
+            --         },
+            --         on_attach = on_attach,
+            --         capabilities = capabilities,
+            --     })
+            -- end,
             ["lua_ls"] = function()
                 nvim_lsp["lua_ls"].setup({
                     on_attach = on_attach,
@@ -105,5 +99,19 @@ return {
                 })
             end,
         })
+
+        nvim_lsp.clangd.setup {
+            cmd = {
+                "clangd",
+                "--compile-commands-dir=build",
+                "--query-driver=**/*",
+                "--clang-tidy",
+                "--all-scopes-completion",
+                "--experimental-modules-support",
+                "--completion-style=bundled",
+            },
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
     end,
 }

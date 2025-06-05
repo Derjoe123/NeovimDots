@@ -10,7 +10,7 @@ return {
             require('mini.diff').setup()
             require('mini.statusline').setup()
             require('mini.surround').setup()
-            require('mini.comment').setup()
+            -- require('mini.comment').setup()
         end,
     },
 }

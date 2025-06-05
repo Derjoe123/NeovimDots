@@ -16,7 +16,7 @@ return {
                 "jsonls",
                 "pyright",
                 "tailwindcss",
-                "clangd",
+                -- "clangd",
                 "lua_ls",
                 "zls",
             },
