@@ -3,7 +3,8 @@ return {
     tag = "0.1.6",
     dependencies = {
         'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        'davvid/telescope-git-grep.nvim'
     },
     config = function()
         require("telescope").setup({
