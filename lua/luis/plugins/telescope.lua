@@ -7,6 +7,17 @@ return {
     },
     config = function()
         require("telescope").setup({
+            defaults = {
+                vimgrep_arguments = {
+                    'rg',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case'
+                },
+            },
             extensions = {
                 fzf = {
                     fuzzy = true,                   -- false will only do exact matching
@@ -15,9 +26,7 @@ return {
                     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                 }
             }
-
         })
-
         -- set keymaps
         local keymap = vim.keymap
         keymap.set("n", "<space>fh", require('telescope.builtin').help_tags, { desc = "Fyzzy find in neovim help tags" })
